@@ -1,0 +1,49 @@
+body{
+    padding: 35px;
+}
+h1{
+    margin-bottom: 20px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+input.aggiorna{
+    margin-bottom: 20px;
+    width: 65%;
+}
+
+.fas, .far{
+    padding-left: 10px;
+    }
+
+.completed{
+    text-decoration: line-through;
+    color:darkgray;
+}
+
+.creation_date{
+    color:darkgray;
+    font-size: 12px;
+}
+.task-box{
+    border: darkgray solid 1px;
+    margin: 15px;
+    padding: 20px;
+    width: 70%;
+    
+}
+.col.icon{
+    text-align: right;
+}
+
+.all-todo{
+    margin: 10px;
+}
+.btn{
+    width: 10rem;
+}
+
+.task-container{
+    margin: 35px 10px;
+}
