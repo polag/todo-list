@@ -17,7 +17,7 @@ function get_tasks($tasks)
             $html .= "<div class='col icon'><a class='completa' href='/todo/includes/completa-todo.php?id=".$task['id']."'><i class='far fa-check-square'></i></i></a>";
             $html .= "<a class='delete' href='/todo/includes/cancella-todo.php?id=".$task['id']."'><i class='fas fa-trash-alt'></i></a></div></div>";
         }   
-        $html .= "<div class='col'><label class='creation_date'>Creato il ".date('d/m/Y',strtotime($task['date']))."</label></div></div>";  
+        $html .= "<div class='col'><label class='creation_date'>Created on ".date('d/m/Y',strtotime($task['date']))."</label></div></div>";  
     
 
     }
