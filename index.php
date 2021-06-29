@@ -40,7 +40,7 @@ $tasks = \DataHandle\Task::selectData();
 
                 <div class="row">
                     <div class="col">
-                        <input type="text" name="task" id="task" class="form-control" autocomplete="off">
+                        <input type="text" name="task" id="task" class="form-control" autocomplete="off" required>
                     </div>
                     <div class="col">
                         <input type="submit" value="Add task" class="btn btn-dark">
@@ -49,9 +49,13 @@ $tasks = \DataHandle\Task::selectData();
             </form>
 
 
+            <?php if(count($tasks)>0):
+             echo \DataHandle\Utils\get_tasks($tasks);
+            else: ?>
+            <div class="task-box no-task">There are no tasks yet!</div>
 
-            <?php echo \DataHandle\Utils\get_tasks($tasks); ?>
-        <?php endif; ?>
+        <?php endif;
+        endif;?>
 
         </div>
     </main>

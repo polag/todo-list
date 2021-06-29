@@ -47,3 +47,8 @@ input.aggiorna{
 .task-container{
     margin: 35px 10px;
 }
+.no-task{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 25px;
+}

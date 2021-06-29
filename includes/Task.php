@@ -2,7 +2,8 @@
 
 namespace DataHandle;
 
-use mysqli;
+require_once __DIR__.'/db.php';
+
 
 class Task
 {
@@ -10,13 +11,7 @@ class Task
     {
         $task = $task['task'];
 
-        $mysqli = new mysqli('localhost', 'root', '', 'todo');
-
-        if ($mysqli->connect_errno) {
-            echo 'Connessione al database fallita: ' . $mysqli->connect_error;
-            exit();
-        }
-
+        global $mysqli;
         $query = $mysqli->prepare('INSERT INTO task(description) VALUES (?)');
         $query->bind_param('s', $task);
         $query->execute();
@@ -33,14 +28,7 @@ class Task
 
     public static function selectData()
     {
-        $mysqli = new mysqli('localhost', 'root', '', 'todo');
-
-        if ($mysqli->connect_errno) {
-            echo 'Connessione al database fallita: ' . $mysqli->connect_error;
-            exit();
-        }
-
-
+        global $mysqli;
         $query = $mysqli->query('SELECT description,id,status,date FROM task');
 
 
@@ -58,12 +46,7 @@ class Task
         $task = $values['task'];
         $id = $values['id'];
 
-        $mysqli = new mysqli('localhost', 'root', '', 'todo');
-
-        if ($mysqli->connect_errno) {
-            echo 'Connessione al database fallita: ' . $mysqli->connect_error;
-            exit();
-        }
+        global $mysqli;
 
         for ($i = 0; $i < count($task); $i++) {
             $query = $mysqli->prepare('UPDATE task SET description = ? WHERE id = ?');
@@ -82,20 +65,16 @@ class Task
         exit;
     }
 
-    public static function completeTask($id)
+    public static function changeTaskStatus($id, $status)
     {
         $id = intval($id);
+        $status = intval($status);
 
-        $mysqli = new mysqli('localhost', 'root', '', 'todo');
-
-        if ($mysqli->connect_errno) {
-            echo 'Connessione al database fallita: ' . $mysqli->connect_error;
-            exit();
-        }
+        global $mysqli;
 
 
-        $query = $mysqli->prepare('UPDATE task SET status = 1 WHERE id = ?');
-        $query->bind_param('i', $id);
+        $query = $mysqli->prepare('UPDATE task SET status = ? WHERE id = ?');
+        $query->bind_param('ii', $status,$id);
         $query->execute();
 
 
@@ -108,16 +87,11 @@ class Task
         exit;
     }
 
+
+
     public static function deleteTask($id = null)
     {
-
-
-        $mysqli = new mysqli('localhost', 'root', '', 'todo');
-
-        if ($mysqli->connect_errno) {
-            echo 'Connessione al database fallita: ' . $mysqli->connect_error;
-            exit();
-        }
+        global $mysqli;
 
         if (isset($id)) {
             $id = intval($id);
